@@ -290,6 +290,10 @@ class ConfigurationFragment @JvmOverloads constructor(
             R.id.action_new_brook -> {
                 startActivity(Intent(requireActivity(), BrookSettingsActivity::class.java))
             }
+            R.id.action_new_hysteria -> {
+                startActivity(Intent(requireActivity(), HysteriaSettingsActivity::class.java))
+            }
+
             R.id.action_new_config -> {
                 startActivity(Intent(requireActivity(), ConfigSettingsActivity::class.java))
             }
@@ -1279,10 +1283,8 @@ class ConfigurationFragment @JvmOverloads constructor(
 
                 val pf = requireParentFragment() as ConfigurationFragment
 
-                if (proxyEntity.requireBean().name.isNotBlank()) {
-                    if (!pf.alwaysShowAddress) {
-                        address = ""
-                    }
+                if (proxyEntity.requireBean().name.isBlank() || !pf.alwaysShowAddress) {
+                    address = ""
                 }
 
                 profileAddress.text = address
